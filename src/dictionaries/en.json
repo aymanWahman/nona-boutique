@@ -1,0 +1,252 @@
+{
+  "logo": "Nona's Boutique",
+  "home": {
+    "hero": {
+      "title": "A Touch of Elegance",
+      "description": "Looking for a piece that speaks your style? At Nona’s Boutique, we bring you the latest fashion in premium linen suits and carefully selected imported wear. Elegant, comfortable, and just a click away!",
+      "orderNow": "Shop Now",
+      "learnMore": "Learn More"
+    },
+    "bestSeller": {
+      "checkOut": "Browse",
+      "OurBestSellers": "Our Best Sellers"
+    },
+    "about": {
+      "ourStory": "Our Story",
+      "aboutUs": "About Nona’s Boutique",
+      "descriptions": {
+        "one": "Welcome to Nona’s Boutique – your destination for refined and stylish women’s fashion. We offer curated collections of linen suits and imported clothing that reflect elegance, comfort, and individuality.",
+        "two": "We believe that every woman deserves to wear something that truly represents her. That’s why we handpick our designs, ensuring high quality, soft fabrics, and modern cuts in every piece.",
+        "three": "Join us on a journey of style and confidence. Nona’s Boutique is more than just a store – it’s an experience crafted for women who seek timeless elegance and unique fashion."
+      },
+      "cards": {
+        "missionTitle": "🛍 Our Mission",
+        "missionText": "To provide women with a unique online shopping experience that reflects their personality and elegance.",
+        "visionTitle": "🌟 Our Vision",
+        "visionText": "To become the top destination for high-end, stylish, and comfortable women’s fashion in the region.",
+        "identityTitle": "🧵 Our Identity",
+        "identityText": "Every piece tells a story — crafted with love, chosen with care, and styled for you.",
+        "slogan": "Your Style, Your Story – Nona’s Touch.",
+        "subSlogan": "Elegance. Comfort. You.",
+        "button": "Explore Our Collection"
+      }
+    },
+    "contact": {
+      "Don'tHesitate": "Don't hesitate",
+      "contactUs": "Contact us"
+    }
+  },
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "menu": "Menu",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register",
+    "signOut": "Sign Out",
+    "profile": "Profile",
+    "admin": "Admin"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      },
+      "submit": "Login",
+      "authPrompt": {
+        "message": "Don't have an account? ",
+        "signUpLinkText": "Sign Up"
+      }
+    },
+    "register": {
+      "title": "Register",
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      },
+      "confirmPassword": {
+        "label": "Confirm Password",
+        "placeholder": "Re-enter your password"
+      },
+      "submit": "Register",
+      "authPrompt": {
+        "message": "Already have an account? ",
+        "loginLinkText": "Login"
+      }
+    }
+  },
+  "validation": {
+    "nameRequired": "Name is required",
+    "validEmail": "Must be a valid email",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "passwordMaxLength": "Password must be at most 40 characters",
+    "confirmPasswordRequired": "Confirm Password is required",
+    "passwordMismatch": "Password do not match"
+  },
+  "messages": {
+    "userNotFound": "User not found",
+    "incorrectPassword": "Incorrect password",
+    "loginSuccessful": "Login successful",
+    "unexpectedError": "An unexpected error occurred",
+    "userAlreadyExists": "User already exists.",
+    "accountCreated": "Account created successfully",
+    "updateProfileSucess": "Profile updated successfull",
+    "categoryAdded": "Category added successfully",
+    "updatecategorySucess": "Category updated successfull",
+    "deleteCategorySucess": "Category deleted successfull",
+    "productAdded": "Product added successfully",
+    "updateProductSucess": "Product updated successfull",
+    "deleteProductSucess": "Product deleted successfull",
+    "updateUserSucess": "User updated successfull",
+    "deleteUserSucess": "User deleted successfull"
+  },
+  "menuItem": {
+    "addToCart": "Add to cart"
+  },
+  "profile": {
+    "title": "Profile",
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "phone": {
+        "label": "Phone",
+        "placeholder": "Enter your phone number",
+        "validation": {
+          "required": "Phone number is required",
+          "invalid": "Please enter a valid phone number"
+        }
+      },
+      "address": {
+        "label": "Street Address",
+        "placeholder": "Enter your address",
+        "validation": {
+          "required": "Address is required"
+        }
+      },
+      "postalCode": {
+        "label": "Postal Code",
+        "placeholder": "Enter your postal code",
+        "validation": {
+          "required": "Postal code is required",
+          "invalid": "Please enter a valid postal code"
+        }
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "Enter your city",
+        "validation": {
+          "required": "City is required"
+        }
+      },
+      "country": {
+        "label": "Country",
+        "placeholder": "Enter your country",
+        "validation": {
+          "required": "Country is required"
+        }
+      }
+    }
+  },
+  "admin": {
+    "tabs": {
+      "profile": "Profile",
+      "categories": "Categories",
+      "menuItems": "Menu Items",
+      "users": "Users",
+      "orders": "Orders"
+    },
+    "categories": {
+      "form": {
+        "editName": "Change Category Name",
+        "name": {
+          "label": "Category Name",
+          "placeholder": "Enter category name",
+          "validation": {
+            "required": "Category Name is required"
+          }
+        }
+      }
+    },
+    "menu-items": {
+      "createNewMenuItem": "Create new menu item",
+      "addItemSize": "Add item size",
+      "addExtraItem": "Add extra item",
+      "menuOption": {
+        "name": "Name",
+        "extraPrice": "Extra Price"
+      },
+      "form": {
+        "name": {
+          "label": "Item Name",
+          "placeholder": "Enter item name",
+          "validation": {
+            "required": "Item Name is required"
+          }
+        },
+        "description": {
+          "label": "Description Name",
+          "placeholder": "Enter description name",
+          "validation": {
+            "required": "description Name is required"
+          }
+        },
+        "basePrice": {
+          "label": "Base Price",
+          "placeholder": "Enter base price",
+          "validation": {
+            "required": "Base Price is required"
+          }
+        },
+        "category": {
+          "validation": {
+            "required": "Category is required"
+          }
+        },
+        "image": {
+          "validation": {
+            "required": "Product image is required"
+          }
+        }
+      }
+    }
+  },
+  "category": "Category",
+  "save": "Save",
+  "edit": "Edit",
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "sizes": "Sizes",
+  "extrasIngredients": "Extras Ingredients",
+  "create": "Create",
+  "cart": {
+    "title": "Shopping Cart",
+    "noItemsInCart": "There are no items in your cart. Add some"
+  },
+  "copyRight": "© 2025 All rights reserved",
+  "noProductsFound": "No products found",
+  "noCategoriesFound": "No categories found"
+}
