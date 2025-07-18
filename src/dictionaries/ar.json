@@ -32,7 +32,7 @@
       }
     },
     "contact": {
-      "Don'tHesitate": "لا تتردد",
+      "dontHesitate": "لا تتردد",
       "contactUs": "اتصل بنا"
     }
   },
@@ -194,7 +194,7 @@
     "menu-items": {
       "createNewMenuItem": "إنشاء عنصر قائمة جديد",
       "addItemSize": "إضافة حجم العنصر",
-      "addExtraItem": "إضافة عنصر إضافي",
+      "addItemColor": "إضافة لون العنصر",
       "menuOption": {
         "name": "الاسم",
         "extraPrice": "السعر الاضافي"
@@ -238,10 +238,10 @@
   "save": "حفظ",
   "edit": "تعديل",
   "delete": "حذف",
-  "create": "انشاء",
-  "sizes": "الأحجام",
-  "extrasIngredients": "عناصر اضافية",
   "cancel": "الغاء",
+  "sizes": "الأحجام",
+  "ProductColor": "الألوان ",
+  "create": "انشاء",
   "cart": {
     "title": "عربة التسوق",
     "noItemsInCart": "لا توجد عناصر في سلة التسوق الخاصة بك. أضف بعضًا"

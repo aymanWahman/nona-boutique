@@ -30,7 +30,7 @@ export type Translations = {
       };
     };
     contact: {
-      "Nona's Boutique": string;
+      dontHesitate: string;
       contactUs: string;
     };
   };
@@ -137,7 +137,7 @@ export type Translations = {
     "menu-items": {
       addItemSize: string;
       createNewMenuItem: string;
-      addExtraItem: string;
+      addItemColor: string;
       menuOption: {
         name: string;
         extraPrice: string;
@@ -177,13 +177,14 @@ export type Translations = {
       };
     };
   };
-  sizes: string;
-  extrasIngredients: string;
+  category: string;
+  save: string;
+  edit: string;
   delete: string;
   cancel: string;
+  sizes: string;
+  ProductColor: string;
   create: string;
-  save: string;
-  category: string;
   copyRight: string;
   noProductsFound: string;
 };

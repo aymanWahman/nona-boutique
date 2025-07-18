@@ -32,7 +32,7 @@
       }
     },
     "contact": {
-      "Don'tHesitate": "Don't hesitate",
+      "dontHesitate": "Don't hesitate",
       "contactUs": "Contact us"
     }
   },
@@ -194,7 +194,7 @@
     "menu-items": {
       "createNewMenuItem": "Create new menu item",
       "addItemSize": "Add item size",
-      "addExtraItem": "Add extra item",
+      "addItemColor": "Add item color",
       "menuOption": {
         "name": "Name",
         "extraPrice": "Extra Price"
@@ -240,7 +240,7 @@
   "delete": "Delete",
   "cancel": "Cancel",
   "sizes": "Sizes",
-  "extrasIngredients": "Extras Ingredients",
+  "ProductColor": " Color",
   "create": "Create",
   "cart": {
     "title": "Shopping Cart",

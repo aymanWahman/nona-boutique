@@ -19,7 +19,7 @@ async function Header() {
           href={`/${locale}`}
           className="text-primary font-semibold text-2xl"
         >
-           {translations.logo}
+          {translations.logo}
         </Link>
         <Navbar translations={translations} initialSession={initialSession} />
         <div className="flex items-center gap-6 flex-1 justify-end">

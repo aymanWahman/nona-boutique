@@ -82,7 +82,7 @@ model Product {
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
   sizes       Size[]
-  extras      Extra[]
+  color      Color[]
   orders      OrderProduct[]
   category    Category       @relation(fields: [categoryId], references: [id])
   categoryId  String
@@ -96,9 +96,9 @@ model Size {
   productId String
 }
 
-model Extra {
+model Color {
   id        String           @id @default(cuid())
-  name      ExtraIngredients
+  name      ProductColor
   price     Float
   product   Product          @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String
@@ -146,12 +146,12 @@ enum ProductSizes {
   LARGE
 }
 
-enum ExtraIngredients {
-  CHEESE
-  BACON
-  TOMATO
-  ONION
-  PEPPER
+enum ProductColor {
+  BLACK
+  WHITE
+  RED
+  GRAY
+
 }
 
 enum UserRole {
