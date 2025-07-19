@@ -9,7 +9,7 @@ import { revalidatePath } from "next/cache";
 
 export const updateProfile = async (
   isAdmin: boolean,
-  prevState: unknown,
+  _prevState: unknown,
   formData: FormData
 ) => {
   const locale = await getCurrentLocale();

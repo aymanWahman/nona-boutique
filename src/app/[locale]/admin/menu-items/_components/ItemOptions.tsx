@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Translations } from "@/types/translations";
-import { Extra, ExtraIngredients, ProductSizes, Size } from "@prisma/client";
+import { Color, ProductColor, ProductSizes, Size } from "@prisma/client";
 import { Plus, Trash2 } from "lucide-react";
 import {
   Select,
@@ -18,7 +18,7 @@ import { Languages } from "@/constants/enums";
 
 export enum ItemOptionsKeys {
   SIZES,
-  EXTRAS,
+  COLORS,
 }
 
 const sizesNames = [
@@ -27,18 +27,18 @@ const sizesNames = [
   ProductSizes.LARGE,
 ];
 
-const extrasNames = [
-  ExtraIngredients.CHEESE,
-  ExtraIngredients.BACON,
-  ExtraIngredients.ONION,
-  ExtraIngredients.PEPPER,
-  ExtraIngredients.TOMATO,
+const colorsNames = [
+  ProductColor.BLACK,
+  ProductColor.WHITE,
+  ProductColor.RED,
+  ProductColor.GRAY,
+
 ];
 
 function handleOptions(
   setState:
     | React.Dispatch<React.SetStateAction<Partial<Size>[]>>
-    | React.Dispatch<React.SetStateAction<Partial<Extra>[]>>
+    | React.Dispatch<React.SetStateAction<Partial<Color>[]>>
 ) {
   const addOption = () => {
     setState((prev: any) => {
@@ -71,10 +71,10 @@ function ItemOptions({
   translations,
   optionKey,
 }: {
-  state: Partial<Size>[] | Partial<Extra>[];
+  state: Partial<Size>[] | Partial<Color>[];
   setState:
     | React.Dispatch<React.SetStateAction<Partial<Size>[]>>
-    | React.Dispatch<React.SetStateAction<Partial<Extra>[]>>;
+    | React.Dispatch<React.SetStateAction<Partial<Color>[]>>;
   translations: Translations;
   optionKey: ItemOptionsKeys;
 }) {
@@ -84,8 +84,8 @@ function ItemOptions({
     switch (optionKey) {
       case ItemOptionsKeys.SIZES:
         return sizesNames.length > state.length;
-      case ItemOptionsKeys.EXTRAS:
-        return extrasNames.length > state.length;
+      case ItemOptionsKeys.COLORS:
+        return colorsNames.length > state.length;
     }
   };
   return (
@@ -106,7 +106,7 @@ function ItemOptions({
                   />
                 </div>
                 <div className="space-y-1 basis-1/2">
-                  <Label>Extra Price</Label>
+                  <Label>Color Price</Label>
                   <Input
                     type="number"
                     placeholder="0"
@@ -141,7 +141,7 @@ function ItemOptions({
           <Plus />
           {optionKey === ItemOptionsKeys.SIZES
             ? translations.admin["menu-items"].addItemSize
-            : translations.admin["menu-items"].addExtraItem}
+            : translations.admin["menu-items"].addItemColor}
         </Button>
       )}
     </>
@@ -158,8 +158,8 @@ const SelectName = ({
   optionKey,
 }: {
   index: number;
-  item: Partial<Size> | Partial<Extra>;
-  currentState: Partial<Size>[] | Partial<Extra>[];
+  item: Partial<Size> | Partial<Color>;
+  currentState: Partial<Size>[] | Partial<Color>[];
   optionKey: ItemOptionsKeys;
   onChange: (e: any, index: any, fieldName: any) => void;
 }) => {
@@ -172,11 +172,11 @@ const SelectName = ({
           (size) => !currentState.some((s) => s.name === size)
         );
         return filteredSizes;
-      case ItemOptionsKeys.EXTRAS:
-        const filteredExtras = extrasNames.filter(
-          (extra) => !currentState.some((e) => e.name === extra)
+      case ItemOptionsKeys.COLORS:
+        const filteredColors = colorsNames.filter(
+          (color) => !currentState.some((e) => e.name === color)
         );
-        return filteredExtras;
+        return filteredColors;
     }
   };
 

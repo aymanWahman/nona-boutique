@@ -183,6 +183,7 @@ export type Translations = {
   delete: string;
   cancel: string;
   sizes: string;
+
   ProductColor: string;
   create: string;
   copyRight: string;

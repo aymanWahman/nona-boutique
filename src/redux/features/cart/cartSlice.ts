@@ -1,5 +1,5 @@
 import { RootState } from '@/redux/store';
-import { Extra, Size } from '@prisma/client';
+import { Color, Size } from '@prisma/client';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type CartItem = {
@@ -9,7 +9,7 @@ export type CartItem = {
   basePrice: number;
   quantity?: number;
   size?: Size;
-  extras?: Extra[];
+  colors?: Color[];
 };
 
 type CartState = {
@@ -32,7 +32,7 @@ export const cartSlice = createSlice({
       if (existingItem) {
         existingItem.quantity = (existingItem.quantity || 0) + 1;
         existingItem.size = action.payload.size;
-        existingItem.extras = action.payload.extras;
+        existingItem.colors = action.payload.colors;
       } else {
         state.items.push({ ...action.payload, quantity: 1 });
       }

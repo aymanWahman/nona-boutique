@@ -37,11 +37,11 @@ function Navbar({
       title: translations.navbar.about,
       href: Routes.ABOUT,
     },
-    {
-      id: crypto.randomUUID(),
-      title: translations.navbar.contact,
-      href: Routes.CONTACT,
-    },
+    // {
+    //   id: crypto.randomUUID(),
+    //   title: translations.navbar.contact,
+    //   href: Routes.CONTACT,
+    // },
   ];
   const isAdmin = session.data?.user.role === UserRole.ADMIN;
   return (

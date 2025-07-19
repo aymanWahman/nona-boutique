@@ -15,7 +15,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { formatCurrency } from '@/lib/formatters';
 import { Checkbox } from '../ui/checkbox';
-import { Extra, ProductSizes, Size } from '@prisma/client';
+import { Color, ProductSizes, Size } from '@prisma/client';
 import { ProductWithRelations } from '@/types/product';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -35,19 +35,19 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
     cart.find((element) => element.id === item.id)?.size ||
     item.sizes.find((size) => size.name === ProductSizes.SMALL);
 
-  const defaultExtras =
-    cart.find((element) => element.id === item.id)?.extras || [];
+  const defaultColors =
+    cart.find((element) => element.id === item.id)?.colors || [];
 
   const [selectedSize, setSelectedSize] = useState<Size>(defaultSize!);
-  const [selectedExtras, setSelectedExtras] = useState<Extra[]>(defaultExtras);
+  const [selectedColors, setSelectedColors] = useState<Color[]>(defaultColors);
 
   let totalPrice = item.basePrice;
   if (selectedSize) {
     totalPrice += selectedSize.price;
   }
-  if (selectedExtras.length > 0) {
-    for (const extra of selectedExtras) {
-      totalPrice += extra.price;
+  if (selectedColors.length > 0) {
+    for (const color of selectedColors) {
+      totalPrice += color.price;
     }
   }
 
@@ -59,7 +59,7 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
         image: item.image,
         name: item.name,
         size: selectedSize,
-        extras: selectedExtras,
+        colors: selectedColors,
       })
     );
   };
@@ -93,11 +93,11 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
             />
           </div>
           <div className='space-y-4 text-center'>
-            <Label htmlFor='add-extras'>Any extras?</Label>
-            <Extras
-              extras={item.extras}
-              selectedExtras={selectedExtras}
-              setSelectedExtras={setSelectedExtras}
+            <Label htmlFor='add-extras'>Any colors?</Label>
+            <Colors
+              colors={item.color}
+              selectedColors={selectedColors}
+              setSelectedColors={setSelectedColors}
             />
           </div>
         </div>
@@ -115,7 +115,7 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
               quantity={quantity}
               item={item}
               selectedSize={selectedSize}
-              selectedExtras={selectedExtras}
+              selectedColors={selectedColors}
             />
           )}
         </DialogFooter>
@@ -158,40 +158,41 @@ function PickSize({
     </RadioGroup>
   );
 }
-function Extras({
-  extras,
-  selectedExtras,
-  setSelectedExtras,
+function Colors({
+  colors,
+  selectedColors,
+  setSelectedColors,
 }: {
-  extras: Extra[];
-  selectedExtras: Extra[];
-  setSelectedExtras: React.Dispatch<React.SetStateAction<Extra[]>>;
+  colors: Color[];
+  selectedColors: Color[];
+  setSelectedColors: React.Dispatch<React.SetStateAction<Color[]>>;
 }) {
-  const handleExtra = (extra: Extra) => {
-    if (selectedExtras.find((e) => e.id === extra.id)) {
-      const filteredSelectedExtras = selectedExtras.filter(
-        (item) => item.id !== extra.id
+  const handleColor = (color: Color) => {
+    if (selectedColors.find((e) => e.id === color.id)) {
+      const filteredSelectedColors = selectedColors.filter(
+        (item) => item.id !== color.id
       );
-      setSelectedExtras(filteredSelectedExtras);
+      setSelectedColors(filteredSelectedColors);
     } else {
-      setSelectedExtras((prev) => [...prev, extra]);
+      setSelectedColors((prev) => [...prev, color]);
     }
   };
-  return extras.map((extra) => (
+
+  return colors.map((color) => (
     <div
-      key={extra.id}
+      key={color.id}
       className='flex items-center space-x-2 border border-gray-100 rounded-md p-4'
     >
       <Checkbox
-        id={extra.id}
-        onClick={() => handleExtra(extra)}
-        checked={Boolean(selectedExtras.find((e) => e.id === extra.id))}
+        id={color.id}
+        onClick={() => handleColor(color)}
+        checked={Boolean(selectedColors.find((e) => e.id === color.id))}
       />
       <Label
-        htmlFor={extra.id}
+        htmlFor={color.id}
         className='text-sm text-accent font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
       >
-        {extra.name} {formatCurrency(extra.price)}
+        {color.name} {formatCurrency(color.price)}
       </Label>
     </div>
   ));
@@ -200,11 +201,11 @@ function Extras({
 const ChooseQuantity = ({
   quantity,
   item,
-  selectedExtras,
+  selectedColors,
   selectedSize,
 }: {
   quantity: number;
-  selectedExtras: Extra[];
+  selectedColors: Color[];
   selectedSize: Size;
   item: ProductWithRelations;
 }) => {
@@ -230,7 +231,7 @@ const ChooseQuantity = ({
                 id: item.id,
                 image: item.image,
                 name: item.name,
-                extras: selectedExtras,
+                colors: selectedColors,
                 size: selectedSize,
               })
             )

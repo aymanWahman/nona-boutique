@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from 'react';
 import FormFields from "@/components/form-fields/form-fields";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/ui/loader";
@@ -10,7 +11,7 @@ import { IFormField } from "@/types/app";
 import { Translations } from "@/types/translations";
 import { signIn } from "next-auth/react";
 import { useParams, useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 function Form({ translations }: { translations: Translations }) {
   const router = useRouter();
@@ -18,19 +19,27 @@ function Form({ translations }: { translations: Translations }) {
   const formRef = useRef<HTMLFormElement>(null);
   const [error, setError] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const { getFormFields } = useFormFields({
     slug: Pages.LOGIN,
     translations,
   });
+
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
+    
     const formData = new FormData(formRef.current);
     const data: Record<string, string> = {};
     formData.forEach((value, key) => {
       data[key] = value.toString();
     });
+
     try {
       setIsLoading(true);
       const res = await signIn("credentials", {
@@ -38,6 +47,7 @@ function Form({ translations }: { translations: Translations }) {
         password: data.password,
         redirect: false,
       });
+
       if (res?.error) {
         const validationError = JSON.parse(res?.error).validationError;
         setError(validationError);
@@ -49,6 +59,7 @@ function Form({ translations }: { translations: Translations }) {
           });
         }
       }
+
       if (res?.ok) {
         toast({
           title: translations.messages.loginSuccessful,
@@ -57,11 +68,14 @@ function Form({ translations }: { translations: Translations }) {
         router.replace(`/${locale}/${Routes.PROFILE}`);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
   };
+
+  if (!mounted) return <Loader />;
+
   return (
     <form onSubmit={onSubmit} ref={formRef}>
       {getFormFields().map((field: IFormField) => (

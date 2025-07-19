@@ -11,7 +11,7 @@ const Contact = async () => {
     <section className='section-gap' id={Routes.CONTACT}>
       <div className='container text-center'>
         <MainHeading
-          subTitle={contact["Don'tHesitate"]}
+          subTitle={contact.dontHesitate}
           title={contact.contactUs}
         />
         <div className='mt-8'>

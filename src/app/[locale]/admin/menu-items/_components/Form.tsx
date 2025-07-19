@@ -10,7 +10,7 @@ import { CameraIcon } from "lucide-react";
 import Image from "next/image";
 import { useActionState, useEffect, useState } from "react";
 import SelectCategory from "./SelectCategory";
-import { Category, Extra, Size } from "@prisma/client";
+import { Category, Color, Size } from "@prisma/client";
 import {
   Accordion,
   AccordionContent,
@@ -44,8 +44,8 @@ function Form({
   const [sizes, setSizes] = useState<Partial<Size>[]>(
     product ? product.sizes : []
   );
-  const [extras, setExtras] = useState<Partial<Extra>[]>(
-    product ? product.extras : []
+  const [colors, setColors] = useState<Partial<Color>[]>(
+    product ? product.color : []
   );
   const { getFormFields } = useFormFields({
     slug: `${Routes.ADMIN}/${Pages.MENU_ITEMS}`,
@@ -76,9 +76,9 @@ function Form({
     product
       ? updateProduct.bind(null, {
           productId: product.id,
-          options: { sizes, extras },
+          options: { sizes, colors },
         })
-      : addProduct.bind(null, { categoryId, options: { sizes, extras } }),
+      : addProduct.bind(null, { categoryId, options: { sizes, colors } }),
     initialState
   );
 
@@ -133,9 +133,9 @@ function Form({
           sizes={sizes}
           setSizes={setSizes}
         />
-        <AddExtras
-          extras={extras}
-          setExtras={setExtras}
+        <AddColors
+          colors={colors}
+          setColors={setColors}
           translations={translations}
         />
         <FormActions
@@ -312,13 +312,13 @@ const AddSize = ({
   );
 };
 
-const AddExtras = ({
-  extras,
-  setExtras,
+const AddColors = ({
+  colors,
+  setColors,
   translations,
 }: {
-  extras: Partial<Extra>[];
-  setExtras: React.Dispatch<React.SetStateAction<Partial<Extra>[]>>;
+  colors: Partial<Color>[];
+  setColors: React.Dispatch<React.SetStateAction<Partial<Color>[]>>;
   translations: Translations;
 }) => {
   return (
@@ -329,13 +329,13 @@ const AddExtras = ({
     >
       <AccordionItem value="item-1" className="border-none">
         <AccordionTrigger className="text-black text-base font-medium hover:no-underline">
-          {translations.extrasIngredients}
+          {translations.ProductColor}
         </AccordionTrigger>
         <AccordionContent>
           <ItemOptions
-            state={extras}
-            optionKey={ItemOptionsKeys.EXTRAS}
-            setState={setExtras}
+            state={colors}
+            optionKey={ItemOptionsKeys.COLORS}
+            setState={setColors}
             translations={translations}
           />
         </AccordionContent>

@@ -8,7 +8,7 @@ import Image from "next/image";
 import FormFields from "../form-fields/form-fields";
 import { Button } from "../ui/button";
 import { UserRole } from "@prisma/client";
-import Checkbox from "../form-fields/checkbox";
+import Checkbox from "../form-fields/FormCheckbox";
 import { useActionState, useEffect, useState } from "react";
 import { ValidationErrors } from "@/validations/auth";
 import { updateProfile } from "./_actions/profile";

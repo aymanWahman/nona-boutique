@@ -5,13 +5,13 @@ import { getCurrentLocale } from "@/lib/getCurrentLocale";
 import { db } from "@/lib/prisma";
 import getTrans from "@/lib/translation";
 import { addProductSchema, updateProductSchema } from "@/validations/product";
-import { Extra, ExtraIngredients, ProductSizes, Size } from "@prisma/client";
+import { Color, ProductColor, ProductSizes, Size } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 export const addProduct = async (
   args: {
     categoryId: string;
-    options: { sizes: Partial<Size>[]; extras: Partial<Extra>[] };
+    options: { sizes: Partial<Size>[]; colors: Partial<Color>[] };
   },
   prevState: unknown,
   formData: FormData
@@ -51,11 +51,11 @@ export const addProduct = async (
               })),
             },
           },
-          extras: {
+          color: {
             createMany: {
-              data: args.options.extras.map((extra) => ({
-                name: extra.name as ExtraIngredients,
-                price: Number(extra.price),
+              data: args.options.colors.map((color) => ({
+                name: color.name as ProductColor,
+                price: Number(color.price),
               })),
             },
           },
@@ -82,7 +82,7 @@ export const addProduct = async (
 export const updateProduct = async (
   args: {
     productId: string;
-    options: { sizes: Partial<Size>[]; extras: Partial<Extra>[] };
+    options: { sizes: Partial<Size>[]; colors: Partial<Color>[] };
   },
   prevState: unknown,
   formData: FormData
@@ -139,15 +139,15 @@ export const updateProduct = async (
       })),
     });
 
-    await db.extra.deleteMany({
+    await db.color.deleteMany({
       where: { productId: args.productId },
     });
 
-    await db.extra.createMany({
-      data: args.options.extras.map((extra) => ({
+    await db.color.createMany({
+      data: args.options.colors.map((color) => ({
         productId: args.productId,
-        name: extra.name as ExtraIngredients,
-        price: Number(extra.price),
+        name: color.name as ProductColor,
+        price: Number(color.price),
       })),
     });
     revalidatePath(`/${locale}/${Routes.MENU}`);

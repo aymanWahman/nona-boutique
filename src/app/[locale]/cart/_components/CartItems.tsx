@@ -18,7 +18,10 @@ function CartItems() {
   const subTotal = getSubTotal(cart);
 
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cart));
+    // تأكد إننا في المتصفح قبل استخدام localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cartItems', JSON.stringify(cart));
+    }
   }, [cart]);
 
   return (
@@ -46,14 +49,14 @@ function CartItems() {
                             Size: {item.size.name}
                           </span>
                         )}
-                        {item.extras && item.extras.length > 0 && (
+                        {item.colors && item.colors.length > 0 && (
                           <div className='flex gap-1'>
-                            <span>Extras:</span>
+                            <span>Colors:</span>
                             <ul>
-                              {item.extras.map((extra) => (
-                                <li key={extra.id}>
+                              {item.colors.map((color) => (
+                                <li key={color.id}>
                                   <span className='text-sm text-accent'>
-                                    {extra.name} {formatCurrency(extra.price)}
+                                    {color.name} {formatCurrency(color.price)}
                                   </span>
                                 </li>
                               ))}
@@ -86,17 +89,19 @@ function CartItems() {
           </ul>
           <div className='flex flex-col justify-end items-end pt-6'>
             <span className='text-accent font-medium'>
-              Subtotal:
-              <strong className='text-black'>{formatCurrency(subTotal)}</strong>
+              Subtotal:{' '}
+              <strong className='text-black'>
+                {formatCurrency(subTotal)}
+              </strong>
             </span>
             <span className='text-accent font-medium'>
-              Delivery:
+              Delivery:{' '}
               <strong className='text-black'>
                 {formatCurrency(deliveryFee)}
               </strong>
             </span>
             <span className='text-accent font-medium'>
-              Total:
+              Total:{' '}
               <strong className='text-black'>
                 {formatCurrency(subTotal + deliveryFee)}
               </strong>

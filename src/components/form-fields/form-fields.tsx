@@ -2,11 +2,12 @@ import { InputTypes } from "@/constants/enums";
 import TextField from "./text-field";
 import PasswordField from "./password-field";
 import { IFormField } from "@/types/app";
-import Checkbox from "./checkbox";
+import FormCheckbox from "./FormCheckbox";
 import { ValidationErrors } from "@/validations/auth";
 
 interface Props extends IFormField {
   error: ValidationErrors;
+  checked?: boolean;
 }
 
 const FormFields = (props: Props) => {
@@ -21,7 +22,7 @@ const FormFields = (props: Props) => {
     }
 
     if (type === InputTypes.CHECKBOX) {
-      return <Checkbox {...props} />;
+      return <FormCheckbox {...props} />;
     }
 
     return <TextField {...props} />;
