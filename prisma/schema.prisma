@@ -72,6 +72,19 @@ model Account {
   @@index([userId])
 }
 
+enum ProductSizes {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum ProductColor {
+  BLACK
+  WHITE
+  RED
+  GRAY
+}
+
 model Product {
   id          String         @id @default(cuid())
   name        String
@@ -81,8 +94,8 @@ model Product {
   basePrice   Float
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
-  sizes       Size[]
-  colors       Color[]
+  sizes       Size[] // علاقة بـ Size
+  colors      Color[] // علاقة بـ Color
   orders      OrderProduct[]
   category    Category       @relation(fields: [categoryId], references: [id])
   categoryId  String
@@ -97,10 +110,10 @@ model Size {
 }
 
 model Color {
-  id        String           @id @default(cuid())
+  id        String       @id @default(cuid())
   name      ProductColor
   price     Float
-  product   Product          @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product   Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String
 }
 
@@ -138,20 +151,6 @@ model OrderProduct {
   userId    String?
   product   Product @relation(fields: [productId], references: [id])
   productId String
-}
-
-enum ProductSizes {
-  SMALL
-  MEDIUM
-  LARGE
-}
-
-enum ProductColor {
-  BLACK
-  WHITE
-  RED
-  GRAY
-
 }
 
 enum UserRole {
