@@ -45,7 +45,7 @@ function Form({
     product ? product.sizes : []
   );
   const [colors, setColors] = useState<Partial<Color>[]>(
-    product ? product.color : []
+    product ? product.colors : []
   );
   const { getFormFields } = useFormFields({
     slug: `${Routes.ADMIN}/${Pages.MENU_ITEMS}`,

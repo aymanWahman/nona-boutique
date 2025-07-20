@@ -8,7 +8,7 @@ export const getProductsByCategory = cache(
         products: {
           include: {
             sizes: true,
-            color: true,
+            colors: true,
           },
         },
       },
@@ -33,7 +33,7 @@ export const getBestSellers = cache(
       },
       include: {
         sizes: true,
-        color: true,
+        colors: true,
       },
       take: limit,
     });
@@ -64,7 +64,7 @@ export const getProduct = cache(
       },
       include: {
         sizes: true,
-        color: true,
+        colors: true,
       },
     });
     return product;

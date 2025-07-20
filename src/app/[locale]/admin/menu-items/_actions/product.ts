@@ -51,7 +51,7 @@ export const addProduct = async (
               })),
             },
           },
-          color: {
+          colors: {
             createMany: {
               data: args.options.colors.map((color) => ({
                 name: color.name as ProductColor,
