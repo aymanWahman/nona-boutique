@@ -24,8 +24,8 @@ function SelectCategory({
 }: {
   categories: Category[];
   categoryId: string;
-  translations: Translations;
   setCategoryId: React.Dispatch<React.SetStateAction<string>>;
+  translations: Translations;
 }) {
   const currentItem = categories.find((item) => item.id === categoryId);
   const { locale } = useParams();

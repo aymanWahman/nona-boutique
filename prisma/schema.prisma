@@ -82,7 +82,7 @@ model Product {
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
   sizes       Size[]
-  color       Color[]
+  colors       Color[]
   orders      OrderProduct[]
   category    Category       @relation(fields: [categoryId], references: [id])
   categoryId  String

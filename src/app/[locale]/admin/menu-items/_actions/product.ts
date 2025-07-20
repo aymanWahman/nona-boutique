@@ -13,7 +13,7 @@ export const addProduct = async (
     categoryId: string;
     options: { sizes: Partial<Size>[]; colors: Partial<Color>[] };
   },
-  prevState: unknown,
+  _prevState: unknown,
   formData: FormData
 ) => {
   const locale = await getCurrentLocale();
@@ -84,7 +84,7 @@ export const updateProduct = async (
     productId: string;
     options: { sizes: Partial<Size>[]; colors: Partial<Color>[] };
   },
-  prevState: unknown,
+  _prevState: unknown,
   formData: FormData
 ) => {
   const locale = await getCurrentLocale();
