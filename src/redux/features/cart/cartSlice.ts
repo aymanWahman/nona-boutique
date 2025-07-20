@@ -15,9 +15,11 @@ export type CartItem = {
 type CartState = {
   items: CartItem[];
 };
-// const initialCartItems = localStorage.getItem('cartItems'); x
+
 const initialCartItems =
   typeof window !== "undefined" ? localStorage.getItem("cartItems") : null;
+
+// const initialCartItems = localStorage.getItem('cartItems'); 
 
 
 const initialState: CartState = {
