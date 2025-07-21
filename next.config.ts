@@ -5,6 +5,20 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{ protocol: 'https', hostname: '**' }],
   },
+   async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'DNS-Prefetch-Control',
+            value: 'on'
+          }
+        ],
+      },
+    ]
+  },
+
   
 };
 
