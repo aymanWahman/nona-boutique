@@ -9,10 +9,8 @@ generator client {
 }
 
 datasource db {
-provider = "postgresql"
-  url = env("DATABASE_URL")
-  relationMode = "prisma"
-  directUrl = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -74,19 +72,6 @@ model Account {
   @@index([userId])
 }
 
-enum ProductSizes {
-  SMALL
-  MEDIUM
-  LARGE
-}
-
-enum ProductColor {
-  BLACK
-  WHITE
-  RED
-  GRAY
-}
-
 model Product {
   id          String         @id @default(cuid())
   name        String
@@ -96,15 +81,13 @@ model Product {
   basePrice   Float
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
-  sizes       Size[]         @relation("ProductSizes")
-  colors      Color[]        @relation("ProductColors")
+  sizes       Size[]
+  colors      Color[]
   orders      OrderProduct[]
   category    Category       @relation(fields: [categoryId], references: [id])
   categoryId  String
 
   @@index([categoryId])
-  Size Size[]
-  Color Color[]
 }
 
 model Size {
@@ -115,18 +98,16 @@ model Size {
   productId String
 
   @@index([productId])
-  Product Product[] @relation("ProductSizes")
 }
 
 model Color {
-  id        String       @id @default(cuid())
-  name      ProductColor
+  id        String        @id @default(cuid())
+  name      ProductColors
   price     Float
-  product   Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product   Product       @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String
 
   @@index([productId])
-  Product Product[] @relation("ProductColors")
 }
 
 model Category {
@@ -154,9 +135,8 @@ model Order {
 }
 
 model OrderProduct {
-  id       String @id @default(cuid())
-  quantity Int
-
+  id        String  @id @default(cuid())
+  quantity  Int
   order     Order   @relation(fields: [orderId], references: [id])
   orderId   String
   user      User?   @relation(fields: [userId], references: [id])
@@ -164,9 +144,24 @@ model OrderProduct {
   product   Product @relation(fields: [productId], references: [id])
   productId String
 
-  @@index([productId])
-  @@index([userId])
   @@index([orderId])
+  @@index([userId])
+  @@index([productId])
+}
+
+enum ProductSizes {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum ProductColors {
+  BLACK
+  WHITE
+  RED
+  GRAY
+  BLUE
+  GREEN
 }
 
 enum UserRole {

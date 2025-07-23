@@ -10,7 +10,7 @@ async function SignupPage({ params }: { params: Promise<{ locale: Locale }> }) {
   const translations = await getTrans(locale);
   return (
     <main>
-      <div className="py-44 md:py-40 bg-gray-50 element-center">
+      <div className="py-12 bg-gray-50 element-center">
         <div className="container element-center">
           <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold text-center text-black mb-4">

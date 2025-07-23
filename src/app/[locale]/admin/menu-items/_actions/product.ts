@@ -5,7 +5,7 @@ import { getCurrentLocale } from "@/lib/getCurrentLocale";
 import { db } from "@/lib/prisma";
 import getTrans from "@/lib/translation";
 import { addProductSchema, updateProductSchema } from "@/validations/product";
-import { Color, ProductColor, ProductSizes, Size } from "@prisma/client";
+import { Color, ProductColors, ProductSizes, Size } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 export const addProduct = async (
@@ -54,7 +54,7 @@ export const addProduct = async (
           colors: {
             createMany: {
               data: args.options.colors.map((color) => ({
-                name: color.name as ProductColor,
+                name: color.name as ProductColors,
                 price: Number(color.price),
               })),
             },
@@ -146,7 +146,7 @@ export const updateProduct = async (
     await db.color.createMany({
       data: args.options.colors.map((color) => ({
         productId: args.productId,
-        name: color.name as ProductColor,
+        name: color.name as ProductColors,
         price: Number(color.price),
       })),
     });
