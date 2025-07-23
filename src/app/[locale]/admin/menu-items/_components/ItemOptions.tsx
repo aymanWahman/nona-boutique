@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Translations } from "@/types/translations";
-import { Color, ProductColor, ProductSizes, Size } from "@prisma/client";
+import { Color, ProductColors, ProductSizes, Size } from "@prisma/client";
 import { Plus, Trash2 } from "lucide-react";
 import {
   Select,
@@ -28,11 +28,10 @@ const sizesNames = [
 ];
 
 const colorsNames = [
-  ProductColor.BLACK,
-  ProductColor.WHITE,
-  ProductColor.RED,
-  ProductColor.GRAY,
-
+  ProductColors.BLACK,
+  ProductColors.WHITE,
+  ProductColors.RED,
+  ProductColors.GRAY,
 ];
 
 function handleOptions(
