@@ -5,6 +5,7 @@ import { Translations } from "@/types/translations";
 interface Props extends IFormFieldsVariables {
   translations: Translations;
 }
+
 const useFormFields = ({ slug, translations }: Props) => {
   const loginFields = (): IFormField[] => [
     {
@@ -17,10 +18,11 @@ const useFormFields = ({ slug, translations }: Props) => {
     {
       label: translations.auth.login.password.label,
       name: "password",
-      placeholder: translations.auth.login.password.placeholder,
       type: "password",
+      placeholder: translations.auth.login.password.placeholder,
     },
   ];
+
   const signupFields = (): IFormField[] => [
     {
       label: translations.auth.register.name.label,
@@ -114,9 +116,11 @@ const useFormFields = ({ slug, translations }: Props) => {
       label: translations.admin["menu-items"].form.basePrice.label,
       name: "basePrice",
       type: "text",
-      placeholder: translations.admin["menu-items"].form.basePrice.placeholder,
+      placeholder:
+        translations.admin["menu-items"].form.basePrice.placeholder,
     },
   ];
+
   const getFormFields = (): IFormField[] => {
     switch (slug) {
       case Pages.LOGIN:
@@ -131,9 +135,8 @@ const useFormFields = ({ slug, translations }: Props) => {
         return [];
     }
   };
-  return {
-    getFormFields,
-  };
+
+  return { getFormFields };
 };
 
 export default useFormFields;

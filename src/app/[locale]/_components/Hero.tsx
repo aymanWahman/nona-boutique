@@ -46,7 +46,7 @@ async function Hero() {
         </div>
         <div className="relative hidden md:block">
           <Image
-            src="https://res.cloudinary.com/dktod7mod/image/upload/v1752966130/nonaBoutiqueD_sfkwio.png"
+            src="https://res.cloudinary.com/dktod7mod/image/upload/v1753432960/nonasalopette_qghuro.png"
             alt="Nona’s Boutique"
             fill
             className="object-contain"

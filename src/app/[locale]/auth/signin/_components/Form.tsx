@@ -1,6 +1,9 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { signIn, getSession } from "next-auth/react";
+
 import FormFields from "@/components/form-fields/form-fields";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/ui/loader";
@@ -9,9 +12,6 @@ import { toast } from "@/hooks/use-toast";
 import useFormFields from "@/hooks/useFormFields";
 import { IFormField } from "@/types/app";
 import { Translations } from "@/types/translations";
-import { signIn } from "next-auth/react";
-import { useParams, useRouter } from "next/navigation";
-import { useRef } from "react";
 
 function Form({ translations }: { translations: Translations }) {
   const router = useRouter();
@@ -33,7 +33,7 @@ function Form({ translations }: { translations: Translations }) {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
-    
+
     const formData = new FormData(formRef.current);
     const data: Record<string, string> = {};
     formData.forEach((value, key) => {
@@ -49,9 +49,8 @@ function Form({ translations }: { translations: Translations }) {
       });
 
       if (res?.error) {
-        const validationError = JSON.parse(res?.error).validationError;
-        setError(validationError);
-        const responseError = JSON.parse(res?.error).responseError;
+        const { validationError, responseError } = JSON.parse(res?.error);
+        setError(validationError || {});
         if (responseError) {
           toast({
             title: responseError,
@@ -65,7 +64,16 @@ function Form({ translations }: { translations: Translations }) {
           title: translations.messages.loginSuccessful,
           className: "text-green-400",
         });
-        router.replace(`/${locale}/${Routes.PROFILE}`);
+
+        // احضر الـ session بعد تسجيل الدخول
+        const session = await getSession();
+        const role = session?.user?.role;
+
+        if (role === "ADMIN") {
+          router.replace(`/${locale}/${Routes.ADMIN}`);
+        } else {
+          router.replace(`/${locale}/${Routes.PROFILE}`);
+        }
       }
     } catch (error) {
       console.error(error);

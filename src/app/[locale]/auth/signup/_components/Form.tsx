@@ -24,6 +24,7 @@ const initialState: {
   status: null,
   formData: null,
 };
+
 function Form({ translations }: { translations: Translations }) {
   const { locale } = useParams();
   const router = useRouter();
@@ -44,6 +45,7 @@ function Form({ translations }: { translations: Translations }) {
       router.replace(`/${locale}/${Routes.AUTH}/${Pages.LOGIN}`);
     }
   }, [locale, router, state.message, state.status]);
+
   return (
     <form action={action}>
       {getFormFields().map((field: IFormField) => {
