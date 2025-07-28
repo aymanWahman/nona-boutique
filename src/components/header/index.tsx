@@ -13,7 +13,7 @@ async function Header() {
   const initialSession = await getServerSession(authOptions);
   const translations = await getTrans(locale);
   return (
-    <header className="fixed top-0 w-full py-4 bg-transparent backdrop-blur-md z-50">
+    <header className="fixed top-0 w-full py-4 bg-transparent backdrop-blur-md z-40">
       <div className="container flex items-center justify-between gap-x-6 lg:gap-x-10">
         <Link
           href={`/${locale}`}

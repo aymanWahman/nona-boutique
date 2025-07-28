@@ -12,7 +12,7 @@ async function Hero() {
   const { home } = await getTrans(locale);
   const { hero } = home;
   return (
-  <section className="section-gap mt-24">
+  <section className="section-gap mt-24 ">
   <div className="container grid grid-cols-1 md:grid-cols-2 items-center">
     
     {/* النصوص */}
