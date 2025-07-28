@@ -93,7 +93,7 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
             />
           </div>
           <div className='space-y-4 text-center'>
-            <Label htmlFor='add-extras'>Any colors?</Label>
+            <Label htmlFor='add-colors'>Any colors?</Label>
             <Colors
               colors={item.colors}
               selectedColors={selectedColors}
