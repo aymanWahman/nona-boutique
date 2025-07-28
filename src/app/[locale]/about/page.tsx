@@ -2,7 +2,7 @@ import About from '@/components/about';
 
 function AboutPage() {
   return (
-    <main>
+    <main className='mt-24'>
       <About />
     </main>
   );

@@ -24,7 +24,7 @@ async function ProfilePage({
   }
   return (
     <main>
-      <section className="section-gap">
+      <section className="section-gap mt-24">
         <div className="container">
           <h1 className="text-primary text-center font-bold text-4xl italic mb-10">
             {translations.profile.title}

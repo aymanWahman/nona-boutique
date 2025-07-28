@@ -3,7 +3,7 @@ import CheckoutForm from './_components/CheckoutForm';
 
 function CartPage() {
   return (
-    <main>
+    <main className='mt-24'>
       <section className='section-gap'>
         <div className='container'>
           <h1 className='text-primary text-center font-bold text-4xl italic mb-10'>

@@ -12,7 +12,7 @@ async function Hero() {
   const { home } = await getTrans(locale);
   const { hero } = home;
   return (
-  <section className="section-gap">
+  <section className="section-gap mt-24">
   <div className="container grid grid-cols-1 md:grid-cols-2 items-center">
     
     {/* النصوص */}
@@ -47,7 +47,7 @@ async function Hero() {
       </div>
 
       {/* ✅ الصورة للموبايل فقط */}
-      <div className="relative block md:hidden mt-6 h-64 w-full">
+      <div className="relative block md:hidden mt-6 h-60 w-full z-[-1]">
         <Image
           src="https://res.cloudinary.com/dktod7mod/image/upload/v1753432960/nonasalopette_qghuro.png"
           alt="Nona’s Boutique"
@@ -60,7 +60,7 @@ async function Hero() {
     </div>
 
     {/* ✅ الصورة للديسكتوب فقط */}
-    <div className="relative hidden md:block h-full">
+    <div className="relative hidden md:block h-full z-[-1]">
       <Image
         src="https://res.cloudinary.com/dktod7mod/image/upload/v1753432960/nonasalopette_qghuro.png"
         alt="Nona’s Boutique"

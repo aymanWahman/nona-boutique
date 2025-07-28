@@ -8,7 +8,7 @@ async function MenuPage({ params }: { params: Promise<{ locale: Locale }> }) {
   const translations = await getTrans(locale);
   const categorites = await getProductsByCategory();
   return (
-    <main>
+    <main className="mt-24">
       {categorites.length > 0 ? (
         categorites.map((category) => (
           <section key={category.id} className="section-gap">

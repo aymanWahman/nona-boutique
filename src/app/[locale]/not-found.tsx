@@ -9,7 +9,7 @@ export default function NotFound() {
         <title>الصفحة غير موجودة | Learn-Learn</title>
       </Head>
       
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4 text-center">
+      <div className="min-h-screen mt-24 flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4 text-center">
         {/* الشعار أو أيقونة */}
         <div className="mb-8">
           <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
