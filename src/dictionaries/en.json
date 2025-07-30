@@ -172,6 +172,16 @@
     }
   },
   "admin": {
+    "order": "Order",
+    "customer": "Customer",
+    "updateStatus": "Update Status",
+    "shippingDetails": "Shipping Details",
+    "address": "Address",
+    "city": "City",
+    "postalCode": "Postal Code",
+    "country": "Country",
+    "phone": "Phone",
+    "paymentSummary": "Payment Summary",
     "tabs": {
       "profile": "Profile",
       "categories": "Categories",
@@ -232,6 +242,32 @@
           }
         }
       }
+    }
+  },
+  "orders": {
+    "orderDetails": "Order Details",
+    "products": "Products",
+    "quantity": "Quantity",
+    "size": "Size",
+    "color": "Color",
+    "orderSummary": "Order Summary",
+    "subTotal": "Subtotal",
+    "delivery": "Delivery Fee",
+    "total": "Total",
+    "cancelOrder": "Cancel Order",
+    "cancelConfirmation": "Are you sure you want to cancel this order?",
+    "confirmCancel": "Yes, Cancel Order",
+    "goBack": "Back to Order",
+    "myOrders": "My Orders",
+    "noOrders": "No orders yet",
+    "browseProducts": "Browse Products",
+    "order": "Order",
+    "status": {
+      "PENDING": "Pending",
+      "PROCESSING": "Processing",
+      "SHIPPED": "Shipped",
+      "DELIVERED": "Delivered",
+      "CANCELLED": "Cancelled"
     }
   },
   "category": "Category",

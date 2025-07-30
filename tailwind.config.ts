@@ -77,7 +77,12 @@ export default {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
-  		}
+  		},
+      fontFamily: {
+      cairo: ['var(--font-cairo)'],
+      dancing: ['var(--font-dancing)'],
+    },
+    
   	}
   },
   plugins: [require("tailwindcss-animate")],

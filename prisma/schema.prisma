@@ -30,6 +30,8 @@ model User {
   orders        OrderProduct[]
   accounts      Account[]
   sessions      Session[]
+
+  Order Order[]
 }
 
 model Session {
@@ -129,9 +131,19 @@ model Order {
   postalCode    String
   city          String
   country       String
+  status        OrderStatus    @default(PENDING) // أضفنا هذا الحقل
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
   products      OrderProduct[]
+  user          User?          @relation(fields: [userEmail], references: [email])
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
 }
 
 model OrderProduct {

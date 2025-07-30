@@ -36,6 +36,7 @@ function AdminTabs({ translations }: { translations: Translations }) {
       title: translations.admin.tabs.orders,
       href: `${Routes.ADMIN}/${Pages.ORDERS}`,
     },
+      
   ];
   const isActiveTab = (href: string) => {
     const hrefArray = href.split("/");

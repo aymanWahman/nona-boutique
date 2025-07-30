@@ -7,6 +7,13 @@ import LanguageSwitcher from "./language-switcher";
 import AuthButtons from "./auth-buttons";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/server/auth";
+import { Dancing_Script } from "next/font/google";
+
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  preload: true,
+});
 
 async function Header() {
   const locale = await getCurrentLocale();
@@ -17,7 +24,7 @@ async function Header() {
       <div className="container flex items-center justify-between gap-x-6 lg:gap-x-10">
         <Link
           href={`/${locale}`}
-          className="text-primary font-semibold text-2xl"
+          className={`text-primary font-semibold text-2xl ${dancingScript.className}`}
         >
           {translations.logo}
         </Link>

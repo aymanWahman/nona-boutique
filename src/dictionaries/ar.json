@@ -172,6 +172,16 @@
     }
   },
   "admin": {
+    "order": "الطلب",
+    "customer": "العميل",
+    "updateStatus": "تحديث الحالة",
+    "shippingDetails": "تفاصيل الشحن",
+    "address": "العنوان",
+    "city": "المدينة",
+    "postalCode": "الرمز البريدي",
+    "country": "الدولة",
+    "phone": "الهاتف",
+    "paymentSummary": "ملخص الدفع",
     "tabs": {
       "profile": "الملف الشخصي",
       "categories": "الفئات",
@@ -234,13 +244,39 @@
       }
     }
   },
+  "orders": {
+    "orderDetails": "تفاصيل الطلب",
+    "products": "المنتجات",
+    "quantity": "الكمية",
+    "size": "المقاس",
+    "color": "اللون",
+    "orderSummary": "ملخص الطلب",
+    "subTotal": "المجموع الجزئي",
+    "delivery": "رسوم الشحن",
+    "total": "الإجمالي",
+    "cancelOrder": "إلغاء الطلب",
+    "cancelConfirmation": "هل أنت متأكد من رغبتك في إلغاء هذا الطلب؟",
+    "confirmCancel": "نعم، إلغاء الطلب",
+    "goBack": "العودة للطلب",
+    "myOrders": "طلباتي",
+    "noOrders": "لا توجد طلبات حتى الآن",
+    "browseProducts": "تصفح المنتجات",
+    "order": "طلب",
+    "status": {
+      "PENDING": "قيد الانتظار",
+      "PROCESSING": "قيد التجهيز",
+      "SHIPPED": "تم الشحن",
+      "DELIVERED": "تم التسليم",
+      "CANCELLED": "ملغي"
+    }
+  },
   "category": "الفئة",
   "save": "حفظ",
   "edit": "تعديل",
   "delete": "حذف",
   "cancel": "الغاء",
   "sizes": "الأحجام",
-  
+
   "ProductColor": "الألوان ",
   "create": "انشاء",
   "cart": {

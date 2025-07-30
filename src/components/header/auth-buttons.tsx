@@ -7,6 +7,12 @@ import { useParams, usePathname, useRouter } from "next/navigation";
 import { Pages, Routes } from "@/constants/enums";
 import { useClientSession } from "@/hooks/useClientSession";
 import { Session } from "next-auth";
+import { Cairo } from "next/font/google";
+
+const cairo = Cairo({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
 function AuthButtons({
   initialSession,
@@ -20,7 +26,7 @@ function AuthButtons({
   const pathname = usePathname();
   const { locale } = useParams();
   return (
-    <div>
+    <div className= {`${cairo.className}`}>
       {session.data?.user && (
         <div className="flex items-center gap-10">
           <Button

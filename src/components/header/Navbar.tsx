@@ -13,6 +13,9 @@ import { Session } from "next-auth";
 import { useClientSession } from "@/hooks/useClientSession";
 import { UserRole } from "@prisma/client";
 
+
+
+
 function Navbar({
   translations,
   initialSession,
@@ -45,7 +48,7 @@ function Navbar({
   ];
   const isAdmin = session.data?.user.role === UserRole.ADMIN;
   return (
-    <nav className="order-last lg:order-none">
+    <nav className= "order-last lg:order-none">
       <Button
         variant="secondary"
         size="sm"
