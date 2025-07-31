@@ -1,81 +1,87 @@
-"use client";
+'use client';
 
-// import { Button } from '@/components/ui/button';
-// import { Input } from '@/components/ui/input';
-// import { Label } from '@/components/ui/label';
-// import { Textarea } from '@/components/ui/textarea';
-import { useAppSelector } from "@/redux/hooks";
-import { selectCartItems } from "@/redux/features/cart/cartSlice";
-import { useRouter } from "next/navigation";
-import { useToast } from "@/hooks/use-toast";
-import { createOrder } from "@/app/[locale]/admin/actions/orders";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { getTotalAmount } from '@/lib/cart';
+import { formatCurrency } from '@/lib/formatters';
+import { selectCartItems } from '@/redux/features/cart/cartSlice';
+import { useAppSelector } from '@/redux/hooks';
 
-// الحل: تغيير التصدير إلى تصدير افتراضي
-export default function CheckoutForm() {
-  const router = useRouter();
-  const { toast } = useToast();
-  const cartItems = useAppSelector(selectCartItems);
-  const subTotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
-  const deliveryFee = subTotal > 100 ? 0 : 10;
-  const totalAmount = subTotal + deliveryFee;
-
-  async function handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget as HTMLFormElement);
-
-    try {
-      const orderItems = cartItems.map((item) => ({
-        id: item.id,
-        quantity: item.quantity,
-        price: item.price,
-      }));
-
-      const order = await createOrder({
-        phone: formData.get("phone") as string,
-        address: formData.get("address") as string,
-        postalCode: formData.get("postal-code") as string,
-        city: formData.get("city") as string,
-        country: formData.get("country") as string,
-        items: orderItems,
-        totalAmount,
-        subTotal,
-        deliveryFee,
-      });
-
-      toast({
-        title: "Order Created",
-        description: `Your order #${order.id.slice(0, 8)} has been placed`,
-      });
-
-      router.push(`/orders/${order.id}`);
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : "An unknown error occurred";
-      toast({
-        title: "Error",
-        description: errorMessage,
-        variant: "destructive",
-      });
-    }
-  }
-
-  if (!cartItems || cartItems.length === 0) {
-    return (
-      <div className="grid gap-6 bg-gray-100 rounded-md p-4">
-        <h2 className="text-2xl text-black font-semibold">
-          Your cart is empty
-        </h2>
-      </div>
-    );
-  }
-
+function CheckoutForm() {
+  const cart = useAppSelector(selectCartItems);
+  const totalAmount = getTotalAmount(cart);
   return (
-    <div className="grid gap-6 bg-gray-100 rounded-md p-4">
-      <h2 className="text-2xl text-black font-semibold">Checkout</h2>
-      <form onSubmit={handleSubmit}>{/* ... باقي الكود بدون تغيير ... */}</form>
-    </div>
+    cart &&
+    cart.length > 0 && (
+      <div className='grid gap-6 bg-gray-100 rounded-md p-4'>
+        <h2 className='text-2xl text-black font-semibold'>Checkout</h2>
+        <form>
+          <div className='grid gap-4'>
+            <div className='grid gap-1'>
+              <Label htmlFor='phone' className='text-accent'>
+                Phone
+              </Label>
+              <Input
+                id='phone'
+                placeholder='Enter your phone'
+                type='text'
+                name='phone'
+              />
+            </div>
+            <div className='grid gap-1'>
+              <Label htmlFor='address' className='text-accent'>
+                Street address
+              </Label>
+              <Textarea
+                id='address'
+                placeholder='Enter your address'
+                name='address'
+                className='resize-none'
+              />
+            </div>
+            <div className='grid grid-cols-2 gap-2'>
+              <div className='grid gap-1'>
+                <Label htmlFor='postal-code' className='text-accent'>
+                  Postal code
+                </Label>
+                <Input
+                  type='text'
+                  id='postal-code'
+                  placeholder='Enter postal code'
+                  name='postal-code'
+                />
+              </div>
+              <div className='grid gap-1'>
+                <Label htmlFor='city' className='text-accent'>
+                  City
+                </Label>
+                <Input
+                  type='text'
+                  id='city'
+                  placeholder='Enter your City'
+                  name='city'
+                />
+              </div>
+              <div className='grid gap-1'>
+                <Label htmlFor='country' className='text-accent'>
+                  Country
+                </Label>
+                <Input
+                  type='text'
+                  id='country'
+                  placeholder='Enter your country'
+                  name='country'
+                />
+              </div>
+            </div>
+            <Button className='h-10'>Pay {formatCurrency(totalAmount)}</Button>
+          </div>
+        </form>
+      </div>
+    )
   );
 }
+
+export default CheckoutForm;

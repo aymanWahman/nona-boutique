@@ -35,19 +35,19 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
     cart.find((element) => element.id === item.id)?.size ||
     item.sizes.find((size) => size.name === ProductSizes.SMALL);
 
-  const defaultColors =
+  const defaultcolors =
     cart.find((element) => element.id === item.id)?.colors || [];
 
   const [selectedSize, setSelectedSize] = useState<Size>(defaultSize!);
-  const [selectedColors, setSelectedColors] = useState<Color[]>(defaultColors);
+  const [selectedcolors, setSelectedcolors] = useState<Color[]>(defaultcolors);
 
   let totalPrice = item.basePrice;
   if (selectedSize) {
     totalPrice += selectedSize.price;
   }
-  if (selectedColors.length > 0) {
-    for (const color of selectedColors) {
-      totalPrice += color.price;
+  if (selectedcolors.length > 0) {
+    for (const Color of selectedcolors) {
+      totalPrice += Color.price;
     }
   }
 
@@ -59,7 +59,8 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
         image: item.image,
         name: item.name,
         size: selectedSize,
-        colors: selectedColors,
+        colors: selectedcolors,
+
       })
     );
   };
@@ -96,8 +97,8 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
             <Label htmlFor='add-colors'>Any colors?</Label>
             <Colors
               colors={item.colors}
-              selectedColors={selectedColors}
-              setSelectedColors={setSelectedColors}
+              selectedcolors={selectedcolors}
+              setSelectedcolors={setSelectedcolors}
             />
           </div>
         </div>
@@ -115,7 +116,7 @@ function AddToCartButton({ item }: { item: ProductWithRelations }) {
               quantity={quantity}
               item={item}
               selectedSize={selectedSize}
-              selectedColors={selectedColors}
+              selectedcolors={selectedcolors}
             />
           )}
         </DialogFooter>
@@ -160,39 +161,38 @@ function PickSize({
 }
 function Colors({
   colors,
-  selectedColors,
-  setSelectedColors,
+  selectedcolors,
+  setSelectedcolors,
 }: {
   colors: Color[];
-  selectedColors: Color[];
-  setSelectedColors: React.Dispatch<React.SetStateAction<Color[]>>;
+  selectedcolors: Color[];
+  setSelectedcolors: React.Dispatch<React.SetStateAction<Color[]>>;
 }) {
-  const handleColor = (color: Color) => {
-    if (selectedColors.find((e) => e.id === color.id)) {
-      const filteredSelectedColors = selectedColors.filter(
-        (item) => item.id !== color.id
+  const handleColor = (Color: Color) => {
+    if (selectedcolors.find((e) => e.id === Color.id)) {
+      const filteredSelectedcolors = selectedcolors.filter(
+        (item) => item.id !== Color.id
       );
-      setSelectedColors(filteredSelectedColors);
+      setSelectedcolors(filteredSelectedcolors);
     } else {
-      setSelectedColors((prev) => [...prev, color]);
+      setSelectedcolors((prev) => [...prev, Color]);
     }
   };
-
-  return colors.map((color) => (
+  return colors.map((Color) => (
     <div
-      key={color.id}
+      key={Color.id}
       className='flex items-center space-x-2 border border-gray-100 rounded-md p-4'
     >
       <Checkbox
-        id={color.id}
-        onClick={() => handleColor(color)}
-        checked={Boolean(selectedColors.find((e) => e.id === color.id))}
+        id={Color.id}
+        onClick={() => handleColor(Color)}
+        checked={Boolean(selectedcolors.find((e) => e.id === Color.id))}
       />
       <Label
-        htmlFor={color.id}
+        htmlFor={Color.id}
         className='text-sm text-accent font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
       >
-        {color.name} {formatCurrency(color.price)}
+        {Color.name} {formatCurrency(Color.price)}
       </Label>
     </div>
   ));
@@ -201,11 +201,11 @@ function Colors({
 const ChooseQuantity = ({
   quantity,
   item,
-  selectedColors,
+  selectedcolors,
   selectedSize,
 }: {
   quantity: number;
-  selectedColors: Color[];
+  selectedcolors: Color[];
   selectedSize: Size;
   item: ProductWithRelations;
 }) => {
@@ -231,7 +231,7 @@ const ChooseQuantity = ({
                 id: item.id,
                 image: item.image,
                 name: item.name,
-                colors: selectedColors,
+                colors: selectedcolors,
                 size: selectedSize,
               })
             )

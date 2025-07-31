@@ -3,21 +3,12 @@ import { Color, Size } from '@prisma/client';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type CartItem = {
- /** Unique product identifier */
-  id: string;
-  /** Product name */
   name: string;
-  /** Product image URL */
+  id: string;
   image: string;
-  /** Base product price */
   basePrice: number;
-  /** Actual price (could include discounts) */
-  price: number;
-  /** Quantity in cart (min 1) */
-  quantity: number;
-  /** Selected size (optional) */
+  quantity?: number;
   size?: Size;
-  /** Selected colors (optional) */
   colors?: Color[];
 };
 
