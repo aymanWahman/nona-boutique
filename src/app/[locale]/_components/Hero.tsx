@@ -5,9 +5,14 @@ import { getCurrentLocale } from "@/lib/getCurrentLocale";
 import getTrans from "@/lib/translation";
 import { ArrowRightCircle } from "lucide-react";
 import Image from "next/image";
-import { Dancing_Script } from "next/font/google";
+import { Dancing_Script ,  Playfair_Display  } from "next/font/google";
 
 const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  preload: true,
+});
+const  playfair_Display  =  Playfair_Display ({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   preload: true,
@@ -23,7 +28,7 @@ async function Hero() {
       <div className="container grid grid-cols-1 md:grid-cols-2 items-center">
         {/* النصوص */}
         <div className="md:py-12">
-          <h1 className={`text-4xl font-semibold ${dancingScript.className}`}>
+          <h1 className={`text-4xl font-semibold ${ playfair_Display.className}`}>
             {hero.title}
           </h1>
           <p className=" text-accent my-4 ">{hero.description}</p>
@@ -32,7 +37,7 @@ async function Hero() {
               href={`/${Routes.MENU}`}
               className={`${buttonVariants({
                 size: "lg",
-              })} space-x-2 !px-4 !rounded-full`}
+              })} space-x-2 !px-4 !rounded-full ${ dancingScript.className}`}
             >
               {hero.orderNow}
               <ArrowRightCircle

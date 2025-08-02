@@ -7,9 +7,9 @@ import LanguageSwitcher from "./language-switcher";
 import AuthButtons from "./auth-buttons";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/server/auth";
-import { Dancing_Script } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 
-const dancingScript = Dancing_Script({
+const playfair_Display = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   preload: true,
@@ -24,7 +24,7 @@ async function Header() {
       <div className="container flex items-center justify-between gap-x-6 lg:gap-x-10">
         <Link
           href={`/${locale}`}
-          className={`text-primary pb-2 font-semibold text-2xl ${dancingScript.className}`}
+          className={`text-primary pb-2 font-semibold text-2xl ${playfair_Display.className}`}
         >
           {translations.logo}
         </Link>
