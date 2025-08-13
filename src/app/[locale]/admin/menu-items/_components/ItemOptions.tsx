@@ -32,6 +32,8 @@ const colorsNames = [
   ProductColors.WHITE,
   ProductColors.RED,
   ProductColors.GRAY,
+  ProductColors.BLUE,
+  ProductColors.GREEN,
 ];
 
 function handleOptions(
@@ -105,7 +107,7 @@ function ItemOptions({
                   />
                 </div>
                 <div className="space-y-1 basis-1/2">
-                  <Label>Color Price</Label>
+                  <Label>Extra Price</Label>
                   <Input
                     type="number"
                     placeholder="0"
@@ -146,7 +148,6 @@ function ItemOptions({
     </>
   );
 }
-
 export default ItemOptions;
 
 const SelectName = ({

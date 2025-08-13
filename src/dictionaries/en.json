@@ -13,9 +13,9 @@
     },
     "about": {
       "ourStory": "Our Story",
-      "aboutUs": "About Nona’s Boutique",
+      "aboutUs": "About Nurza Rüya",
       "descriptions": {
-        "one": "Welcome to Nona’s Boutique – your destination for refined and stylish women’s fashion. We offer curated collections of linen suits and imported clothing that reflect elegance, comfort, and individuality.",
+        "one": "Welcome to Nurza Rüya – your destination for refined and stylish women’s fashion. We offer curated collections of linen suits and imported clothing that reflect elegance, comfort, and individuality.",
         "two": "We believe that every woman deserves to wear something that truly represents her. That’s why we handpick our designs, ensuring high quality, soft fabrics, and modern cuts in every piece.",
         "three": "Join us on a journey of style and confidence. Nona’s Boutique is more than just a store – it’s an experience crafted for women who seek timeless elegance and unique fashion."
       },
@@ -172,16 +172,6 @@
     }
   },
   "admin": {
-    "order": "Order",
-    "customer": "Customer",
-    "updateStatus": "Update Status",
-    "shippingDetails": "Shipping Details",
-    "address": "Address",
-    "city": "City",
-    "postalCode": "Postal Code",
-    "country": "Country",
-    "phone": "Phone",
-    "paymentSummary": "Payment Summary",
     "tabs": {
       "profile": "Profile",
       "categories": "Categories",
@@ -242,32 +232,6 @@
           }
         }
       }
-    }
-  },
-  "orders": {
-    "orderDetails": "Order Details",
-    "products": "Products",
-    "quantity": "Quantity",
-    "size": "Size",
-    "color": "Color",
-    "orderSummary": "Order Summary",
-    "subTotal": "Subtotal",
-    "delivery": "Delivery Fee",
-    "total": "Total",
-    "cancelOrder": "Cancel Order",
-    "cancelConfirmation": "Are you sure you want to cancel this order?",
-    "confirmCancel": "Yes, Cancel Order",
-    "goBack": "Back to Order",
-    "myOrders": "My Orders",
-    "noOrders": "No orders yet",
-    "browseProducts": "Browse Products",
-    "order": "Order",
-    "status": {
-      "PENDING": "Pending",
-      "PROCESSING": "Processing",
-      "SHIPPED": "Shipped",
-      "DELIVERED": "Delivered",
-      "CANCELLED": "Cancelled"
     }
   },
   "category": "Category",

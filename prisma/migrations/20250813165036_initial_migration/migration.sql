@@ -1,14 +1,14 @@
 -- CreateEnum
-CREATE TYPE "ProductSizes" AS ENUM ('SMALL', 'MEDIUM', 'LARGE');
+CREATE TYPE "public"."ProductSizes" AS ENUM ('SMALL', 'MEDIUM', 'LARGE');
 
 -- CreateEnum
-CREATE TYPE "ProductColors" AS ENUM ('BLACK', 'WHITE', 'RED', 'GRAY', 'BLUE', 'GREEN');
+CREATE TYPE "public"."ProductColors" AS ENUM ('BLACK', 'WHITE', 'RED', 'GRAY', 'BLUE', 'GREEN');
 
 -- CreateEnum
-CREATE TYPE "UserRole" AS ENUM ('USER', 'ADMIN');
+CREATE TYPE "public"."UserRole" AS ENUM ('USER', 'ADMIN');
 
 -- CreateTable
-CREATE TABLE "User" (
+CREATE TABLE "public"."User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE "User" (
     "postalCode" TEXT,
     "city" TEXT,
     "country" TEXT,
-    "role" "UserRole" NOT NULL DEFAULT 'USER',
+    "role" "public"."UserRole" NOT NULL DEFAULT 'USER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -27,7 +27,7 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
-CREATE TABLE "Session" (
+CREATE TABLE "public"."Session" (
     "id" TEXT NOT NULL,
     "sessionToken" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE "Session" (
 );
 
 -- CreateTable
-CREATE TABLE "VerificationRequest" (
+CREATE TABLE "public"."VerificationRequest" (
     "id" TEXT NOT NULL,
     "identifier" TEXT NOT NULL,
     "token" TEXT NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE "VerificationRequest" (
 );
 
 -- CreateTable
-CREATE TABLE "Account" (
+CREATE TABLE "public"."Account" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "type" TEXT NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE "Account" (
 );
 
 -- CreateTable
-CREATE TABLE "Product" (
+CREATE TABLE "public"."Product" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
@@ -82,9 +82,9 @@ CREATE TABLE "Product" (
 );
 
 -- CreateTable
-CREATE TABLE "Size" (
+CREATE TABLE "public"."Size" (
     "id" TEXT NOT NULL,
-    "name" "ProductSizes" NOT NULL,
+    "name" "public"."ProductSizes" NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
     "productId" TEXT NOT NULL,
 
@@ -92,9 +92,9 @@ CREATE TABLE "Size" (
 );
 
 -- CreateTable
-CREATE TABLE "Color" (
+CREATE TABLE "public"."Color" (
     "id" TEXT NOT NULL,
-    "name" "ProductColors" NOT NULL,
+    "name" "public"."ProductColors" NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
     "productId" TEXT NOT NULL,
 
@@ -102,7 +102,7 @@ CREATE TABLE "Color" (
 );
 
 -- CreateTable
-CREATE TABLE "Category" (
+CREATE TABLE "public"."Category" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "order" SERIAL NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE "Category" (
 );
 
 -- CreateTable
-CREATE TABLE "Order" (
+CREATE TABLE "public"."Order" (
     "id" TEXT NOT NULL,
     "paid" BOOLEAN NOT NULL DEFAULT false,
     "subTotal" DOUBLE PRECISION NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE "Order" (
 );
 
 -- CreateTable
-CREATE TABLE "OrderProduct" (
+CREATE TABLE "public"."OrderProduct" (
     "id" TEXT NOT NULL,
     "quantity" INTEGER NOT NULL,
     "orderId" TEXT NOT NULL,
@@ -141,64 +141,46 @@ CREATE TABLE "OrderProduct" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+CREATE UNIQUE INDEX "User_email_key" ON "public"."User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Session_sessionToken_key" ON "Session"("sessionToken");
+CREATE UNIQUE INDEX "Session_sessionToken_key" ON "public"."Session"("sessionToken");
 
 -- CreateIndex
-CREATE INDEX "Session_userId_idx" ON "Session"("userId");
+CREATE INDEX "Session_userId_idx" ON "public"."Session"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "VerificationRequest_token_key" ON "VerificationRequest"("token");
+CREATE UNIQUE INDEX "VerificationRequest_token_key" ON "public"."VerificationRequest"("token");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "VerificationRequest_identifier_token_key" ON "VerificationRequest"("identifier", "token");
+CREATE UNIQUE INDEX "VerificationRequest_identifier_token_key" ON "public"."VerificationRequest"("identifier", "token");
 
 -- CreateIndex
-CREATE INDEX "Account_userId_idx" ON "Account"("userId");
+CREATE INDEX "Account_userId_idx" ON "public"."Account"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provider", "providerAccountId");
-
--- CreateIndex
-CREATE INDEX "Product_categoryId_idx" ON "Product"("categoryId");
-
--- CreateIndex
-CREATE INDEX "Size_productId_idx" ON "Size"("productId");
-
--- CreateIndex
-CREATE INDEX "Color_productId_idx" ON "Color"("productId");
-
--- CreateIndex
-CREATE INDEX "OrderProduct_orderId_idx" ON "OrderProduct"("orderId");
-
--- CreateIndex
-CREATE INDEX "OrderProduct_userId_idx" ON "OrderProduct"("userId");
-
--- CreateIndex
-CREATE INDEX "OrderProduct_productId_idx" ON "OrderProduct"("productId");
+CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "public"."Account"("provider", "providerAccountId");
 
 -- AddForeignKey
-ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Product" ADD CONSTRAINT "Product_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."Product" ADD CONSTRAINT "Product_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "public"."Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Size" ADD CONSTRAINT "Size_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."Size" ADD CONSTRAINT "Size_productId_fkey" FOREIGN KEY ("productId") REFERENCES "public"."Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Color" ADD CONSTRAINT "Color_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "public"."Color" ADD CONSTRAINT "Color_productId_fkey" FOREIGN KEY ("productId") REFERENCES "public"."Product"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "OrderProduct" ADD CONSTRAINT "OrderProduct_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."OrderProduct" ADD CONSTRAINT "OrderProduct_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "public"."Order"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "OrderProduct" ADD CONSTRAINT "OrderProduct_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "public"."OrderProduct" ADD CONSTRAINT "OrderProduct_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "OrderProduct" ADD CONSTRAINT "OrderProduct_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."OrderProduct" ADD CONSTRAINT "OrderProduct_productId_fkey" FOREIGN KEY ("productId") REFERENCES "public"."Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
