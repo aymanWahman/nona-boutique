@@ -48,7 +48,7 @@ function CartItems() {
                         )}
                         {item.colors && item.colors.length > 0 && (
                           <div className='flex gap-1'>
-                            <span>Extras:</span>
+                            <span>Colors:</span>
                             <ul>
                               {item.colors.map((color) => (
                                 <li key={color.id}>

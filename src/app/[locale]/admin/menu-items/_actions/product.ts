@@ -152,9 +152,7 @@ export const updateProduct = async (
     });
     revalidatePath(`/${locale}/${Routes.MENU}`);
     revalidatePath(`/${locale}/${Routes.ADMIN}/${Pages.MENU_ITEMS}`);
-    revalidatePath(
-      `/${locale}/${Routes.ADMIN}/${Pages.MENU_ITEMS}/${updatedProduct.id}/${Pages.EDIT}`
-    );
+    revalidatePath(`/${locale}/${Routes.ADMIN}/${Pages.MENU_ITEMS}/${updatedProduct.id}/${Pages.EDIT}`);
     revalidatePath(`/${locale}`);
     return {
       status: 200,
